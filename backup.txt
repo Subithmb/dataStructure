@@ -1,0 +1,385 @@
+
+class Node{
+    constructor(data){
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.prev = null;
+    }
+
+    add(data) {
+        let newNode = new Node(data);
+        if (this.head === null) {
+            this.head = newNode;
+        } else {
+            this.tail.next = newNode;
+        }
+        this.tail = newNode;
+    }
+
+
+
+
+
+
+    addafter(nextTo, data) {
+        let newNode = new Node(data);
+        let temp = this.head;
+        while (temp !== null && temp.data !== nextTo) {
+            temp = temp.next;
+        }
+        if (temp === null) {
+            return;
+        }
+        if (temp === this.tail) {
+            this.tail.next = newNode;
+            this.tail = newNode;
+            return;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+
+
+
+    addbefore(before, data) {
+        let newNode = new Node(data);
+        let temp = this.head;
+        let prev = null;
+        while (temp !== null && temp.data !== before) {
+            prev = temp;
+            temp = temp.next;
+        }
+        if (temp === this.head) {
+            newNode.next = this.head;
+            this.head = newNode;
+            return;
+        }
+        prev.next = newNode;
+        newNode.next = temp;
+    }
+
+// delete middle
+
+    find() {
+        let fast = this.head;
+        let slow = this.head;
+        let prev = null;
+        while (fast !== null && fast.next !== null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        prev.next = slow.next;
+    }
+
+
+
+
+    delete(data) {
+        let temp = this.head;
+        let prev = null;
+        if (temp !== null && temp.data === data) {
+            this.head = temp.next;
+            return;
+        }
+
+        while (temp !== null && temp.data !== data) {
+            prev = temp;
+            temp = temp.next;
+        }
+
+        if (temp === this.tail) {
+            this.tail = prev;
+        }
+
+        prev.next = temp.next;
+    }
+
+
+// remove duplicates from linkedlist
+
+
+    removeDuplicates() {
+        let current = this.head;
+        while (current) {
+            let runner = current;
+            while (runner.next) {
+                if (current.data === runner.next.data) {
+                    runner.next = runner.next.next;
+                } else {
+                    runner = runner.next;
+                }
+            }
+            current = current.next;
+        }
+    }
+
+
+
+// print all elements in linked list
+
+    display() {
+        let current = this.head;
+        while (current) {
+            console.log(current.data);
+            current = current.next;
+        }
+    }
+}
+
+let ll = new LinkedList();
+ll.add(100);
+ll.add(200);
+ll.add(100);
+// ll.removeDuplicates();
+// ll.addafter(200, 900);
+// ll.addbefore(100, 800);
+// ll.delete(900);
+ ll.find();
+  ll.display();
+
+
+
+
+
+
+   linked list
+
+   class node{
+    constructor(data){
+        this.data=data
+        this.next=null
+    }
+   }
+
+   class linkedlist{
+    constructor(){
+        this.head=null
+        this.tail=null
+    }
+    addtolist(data){
+        let newnode=new node(data)
+        if(this.head==null){
+            this.head=newNode
+        }
+        else{
+            this.tail.next=newNode
+        }
+        this.tail=newNode
+
+    }
+
+    addbefore(before,data){
+        let temp=this.head
+        let newnod=new node(data)
+        if(temp.data==before){
+            newnod.next=this.head
+            this.head=newnod
+            return;
+             }
+             while(temp.next){
+                if(temp.next.data == before){
+                    newnod.next=temp.next
+                    temp.next=newnod
+                    return
+                }
+                temp=temp.next
+             } }
+
+             addafter(nextTo,data){
+                let temp=this.head
+                let newnode=new node(data)
+                while(temp != null && temp.data != nextTo){
+                        temp=temp.next
+                }
+                if(temp==null){
+                    return
+                }
+                if(temp==this.tail){
+                  this.tail.next=newNode
+                  this.tail=newNode  
+                  return    
+                }
+                newnode.next=temp.next
+                temp.next=newNode
+             }
+
+             delete(value){
+                let temp= this.head
+                    if(temp.data==value){
+                        this.head=temp.next
+                        return
+                    }
+
+
+                    while(temp.next){
+                        if(temp.next.data==value){
+                            temp.next=temp.next.next
+                        }
+
+
+                        if(temp.next==null){
+                            this.tail=temp
+                            return
+                        }
+                        temp=temp.next
+                    }
+                 }
+
+    display(){
+        let temp=this.head
+        while(temp){
+            console.log(temp.data)
+            temp=temp.next
+        }
+    }
+   }
+
+
+
+
+   linear search
+
+   function linear(arr,val){
+    for(i=0;i<arr.length;i++){
+        if(arr[i]==val){
+            return i
+        }
+    }
+    return -1
+   }
+
+
+
+
+
+   class node{
+    constructor(data){
+        this.data=data
+        this.next=null
+    }
+   }
+
+   class linkedlist{
+    constructor(){
+        this.head=null
+        this.tail=null
+            }
+
+            addtolist(data){
+                let newnode= new node(data)
+                if(this.head==null){
+                    this.head=newnode
+                }
+                else{
+                    this.tail.next=newnode
+
+                }this.tail=newNode
+
+            }
+
+addtohead(data){
+    let newnode=new node(data)
+    let temp=this.head
+    while(temp){
+        
+        newnode.next=this.head
+        this.head=newnode
+        return
+    }
+}
+
+        adddafter(after,data){
+            let newnode=new node(data)
+            leet temp=this.head
+            while(temp){
+                if(temp.data==after){
+                    newnode.next=temp.next
+                    temp.next=newnode
+                    return
+                }
+
+                if(this.tail==after){
+                    this.tail.next=newnode
+                    this.tail=newnode
+                }
+                teemp==temp.next
+            }
+        }
+
+
+        addbefore(before,data){
+            let newnode=neew node(data)
+            let temp=this.head
+            if(temp.data==before){
+                newnode.next=this.head
+                this.head=newnode
+            }
+            while(temp.next){
+                if(temp.next.data==before){
+                    newnode.next=temp.next
+                    temp.next=newnode
+                    return
+                }
+                temp=temp.next
+            }
+        }
+
+            display(){
+                let temp=this.head
+                while(temp){
+                    console.log(temp.data)
+                    temp=teemp.next
+                }
+            }
+   }
+
+
+Stack
+
+   
+class Stack {
+    constructor() {
+      this.arr = [];
+    }
+  
+    push(e) {
+      this.arr.push(e);
+      return this.arr.length;
+    }
+    pop() {
+      let val = this.arr.pop();
+      return val;
+    }
+    peek() {
+      return this.arr[this.arr.length - 1];
+    }
+    isEmpty() {
+      return !this.arr.length;
+    }
+    size() {
+      return this.arr.length;
+    }
+    print() {
+      return this.arr
+    }
+  }
+
+let newstack=new Stack()
+console.log(newstack.isEmpty());
+newstack.push(10)
+newstack.push(20)
+newstack.push(30)
+console.log(newstack.print())
+console.log(newstack.pop());
+console.log(newstack.print())
+console.log(newstack.size());
+console.log(newstack.peek());
