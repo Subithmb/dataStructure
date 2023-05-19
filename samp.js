@@ -956,6 +956,9 @@
 // newstack.display()
 // newstack.secondlarge()
 
+
+// merge sort
+
 // function mergeSort(a,lb,ub){
 //   if(lb<ub){
 //     let mid=Math.floor((lb+ub)/2)
@@ -1003,6 +1006,10 @@
 // console.log(mergeSort(a,lb,ub));
 
 
+
+// .....................................insertion sort
+
+
 // function insertion(a){
 //   for(i=1;i<a.length;i++){
 //     let value=a[i]
@@ -1036,7 +1043,9 @@
 //   a[l]=a[j]
 //   a[j]=temp
 //   return j
-// }
+// } 
+
+// .......................quicksort
 
 // function quicksort(a,l,r){
 //   if(l<r){
@@ -1109,6 +1118,9 @@
 //     this.next=null
 //   }
 // }
+
+// .................................stack
+
 // class stack{
 //   constructor(){
 //     this.top=null
@@ -1224,5 +1236,5 @@
 // return a
   
 // }
-// a=[23,3,4,1,7,5]
+// a=[23,3,4,1,7,5]   
 // console.log(bubble(a));

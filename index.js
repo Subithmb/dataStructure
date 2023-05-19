@@ -2922,91 +2922,1683 @@
 // console.log(tr.contain('ree'));
 
 
-class node{
-    constructor(data){
-        this.data=data
-        this.left=null
-        this.right=null
-    }
+// class node{
+//     constructor(data){
+//         this.data=data
+//         this.left=null
+//         this.right=null
+//     }
 
-}
-class binarySearchtree{
+// }
+// class binarySearchtree{
+//     constructor(){
+//         this.root=null
+//     }
+//     insert(data){
+//         let currentdata=this.root
+
+//         if(currentdata==null){
+//             this.root=new node(data)
+//             return this.root.data+'...root'
+//         }else{
+//             while(true){
+//                 if(data<currentdata.data){
+//                     if(currentdata.left==null){
+//                         currentdata.left=new node(data)
+//                         return currentdata.left.data+'...left'
+//                     }else{
+//                         currentdata=currentdata.left
+//                     }
+//                 }else{
+//                     if(currentdata.right==null){
+//                         currentdata.right=new node(data)
+//                         return currentdata.right.data+'...right'
+//                     }else{
+//                         currentdata=currentdata.right
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     contain(data){
+//         let curentdata=this.root
+//         while(curentdata!=null){
+//             if(data<curentdata.data){
+//                 curentdata=curentdata.left
+//             }
+//             else if(data<curentdata.data){
+//                 curentdata=curentdata.left
+//             }else{
+//                 return true
+//             }
+//         }
+//         return false
+// }
+
+// inorder(){
+//     this.inorderHelper(this.root)
+// }
+// inorderHelper(curentdata){
+//     if(curentdata!=null){
+//         this.inorderHelper(curentdata.left)
+//         console.log(curentdata.data);
+//         this.inorderHelper(curentdata.right)
+//     }
+// }
+
+// isBst(){
+//     return this.isBstHelper(this.root,0,Infinity)
+// }
+// isBstHelper(root,min,max){
+//     if(root==null)
+//     return true
+//     if(root.data<min || root.data>max)
+//     return false
+//     return(this.isBstHelper(root.left,min,root.data-1)&& this.isBstHelper(root.right,root.data+1,max))
+// }
+// }
+
+// let tr=new binarySearchtree()
+// console.log(tr.insert(40));
+// console.log(tr.insert(30));
+// console.log(tr.insert(32));
+// console.log(tr.insert(28));
+// console.log(tr.insert(58));
+// console.log(tr.insert(50));
+// console.log(tr.insert(42));
+// tr.inorder()
+// console.log(tr.contain(50));
+// console.log(tr.isBst());
+
+
+// class minHeap{
+//     constructor(){
+//         this.heap=[]
+      
+//     }
+//     shiftDown(currentIndex){
+//         let endIdx=this.heap.length-1
+//         let leftIdx=this.leftChild(currentIndex)
+//         while(leftIdx<=endIdx){
+//             let rightIdx=this.rightChild(currentIndex)
+//             let swapidx
+//             if(rightIdx<=endIdx && this.heap[rightIdx]<this.heap[leftIdx]){
+//                 swapidx=rightIdx
+//             }else{
+//                 swapidx=leftIdx
+//             }if(this.heap[currentIndex]>this.heap[swapidx]){
+//                 this.swap(currentIndex,swapidx)
+//                 currentIndex=swapidx
+//                 leftIdx=this.leftChild(currentIndex)
+//             }else{
+//                 return
+//             }
+//         }
+//     }
+//     shiftUp(currentIndex){
+//         let parentIdx=this.parent(currentIndex)
+//         while(currentIndex>0 && this.heap[parentIdx]>this.heap[currentIndex]){
+//             this.swap(currentIndex,parentIdx)
+//             currentIndex=parentIdx
+//             parentIdx=this.parent(currentIndex)
+//         }
+//     }
+//     insert(data){
+//         this.heap.push(data)
+//         this.shiftUp(this.heap.length-1)
+//     }
+//     remove(){
+//         this.swap(0,this.heap.length-1)
+//         this.heap.pop()
+//         this.shiftDown(0)
+//     }
+//     buildHeap(array){
+//         this.heap=[...array]
+//         for(let i=this.parent(this.heap.length-1);i>=0;i--)
+//         this.shiftDown(i)
+//     }
+//     print(){
+//         for(let i=0;i<this.heap.length;i++)
+//         console.log(this.heap[i]);
+//     }
+//     parent(i){
+//         return Math.floor((i-1)/2)
+//     }
+//     leftChild(i){
+//         return i*2+1
+//     }
+//     rightChild(i){
+//         return i*2+2
+//     }
+//     swap(i,j){
+//         [this.heap[i],this.heap[j]]=[this.heap[j],this.heap[i]]
+//     }
+// }
+
+// let array=[12,1,4,9,5]
+// let tr=new minHeap()
+// tr.buildHeap(array)
+// tr.print()
+// console.log('.....');
+// // tr.insert(3)
+// tr.remove()
+// tr.print()
+// console.log('.....');
+
+
+// class trienode{
+//     constructor(){
+//         this.children=new Map()
+//     }
+// }
+// class trie{
+//     constructor(str){
+//         this.root=new trienode()
+//         this.endSymbol='*'
+//         this.populateSuffixtrie(str)
+//     }
+//     populateSuffixtrie(str){
+//         for(let i=0;i<str.length;i++)
+//         this.insertsubstring(i,str)
+//     }
+//     insertsubstring(index,str){
+//         let node=this.root
+//         for(let i=index;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 node.children.set(letter,new trienode())
+//             }node=node.children.get(letter)
+//         }node.children.set(this.endSymbol,null)
+//     }
+
+//     contain(str){
+//         let node=this.root
+//         for(let i=0;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 return false
+//             }node=node.children.get(letter)
+//         }return node.children.has(this.endSymbol)
+//     }
+
+// }
+// let tr=new trie('tree')
+// console.log(tr.contain('tre'));
+
+
+// ..................................maxHeap...................................
+
+
+//   maxHeapSort(array) {
+//       let maxHeap = new MaxHeap();
+//       maxHeap.buildHeap(array);
+    
+//       for (let i = array.length - 1; i >= 1; i--) {
+//         maxHeap.swap(0, i);
+//         maxHeap.shiftDownMax(0, i - 1);
+//       }
+    
+//       return maxHeap.heap;
+//     }
+
+
+
+// ......................graph.........................
+
+
+// class Graph {
+//     constructor() {
+//         this.map = new Map();
+//     }
+//     addVertex(vertex) {
+//         this.map.set(vertex, []);
+//     }
+//     insert(vertex, edge, isbidirection = false) {
+//         if (!this.map.has(vertex)) {
+//             this.addVertex(vertex);
+//         }
+//         if (!this.map.has(edge)) {
+//             this.addVertex(edge);
+//         }
+//         this.map.get(vertex).push(edge);
+//         if (isbidirection) {
+//             this.map.get(edge).push(vertex);
+//         }
+//     }
+//     delete(vertex) {
+//         if (this.map.has(vertex)) {
+//             let edges = this.map.get(vertex);
+//             // console.log(edges);
+//             for (let edge of edges) {
+//                 const edgeArray = this.map.get(edge);
+//                 const index = edgeArray.indexOf(vertex);
+//                 if (index >= 0) {
+//                     edgeArray.splice(index, 1);
+//                 }
+//             }
+//             this.map.delete(vertex);
+//         }
+//     }
+    
+//     display() {
+//         for (let vertex of this.map.keys()) {
+//             let temp = this.map.get(vertex);
+//             console.log(vertex, temp);
+//         }
+//     }
+//   }
+//   let obj = new Graph();
+//   obj.insert("A", 1);
+//   obj.insert("B", 2);
+//   obj.insert("C", 1,true);
+//   obj.insert("D", 'A',true);
+//   obj.delete("A");
+//   obj.display();
+
+
+//   class graph{
+//     constructor(){
+//         this.map=new this.map()
+//     }
+//     addVertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     inser(vertex,edge,isbidirection=false){
+//         if(!this.map.has(vertex)){
+//             this.addVertex(vertex)
+//         }
+//     }
+//   }
+// class graph{
+//     constructor(){
+//         this.Map=new map()
+//     }
+//     addVertex(vertex){
+//         this.Map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirection=false){
+//         if(!this.Map.has(vertex))
+//         this.addVertex(vertex)
+//         if(!this.Map.has(edge))
+//         this.addVertex(edge)
+//         this.Map.get(vertex).push(edge)
+//         if(isbidirection){
+//             this.Map.get(edge).push(vertex)
+//         }
+//     }
+
+// }
+
+// class graph{
+//     constructor(){
+//         this.map=new this.map()
+//     }
+//     addvertx(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirection=false){
+//         if(!this.map.has(vertex))
+//         this.addvertx(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertx(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirection){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+// }
+// class graph{
+//     constructor(){
+//         this.map=new map()
+//     }
+//     addvertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirection=false){
+//         if(!this.map.has(vertex))
+//         this.addvertex(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertex(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirection){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+// }
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addVertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirection=false){
+//         if(!this.map.has(vertex))
+//         this.addVertex(vertex)
+//         if(!this.map.has(edge))
+//         this.addVertex(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirection){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+//     display(){
+//         for(let vertex of this.map.keys()){
+//             let temp=this.map.get(vertex)
+//             console.log(vertex,temp);
+//         }
+//     }
+// }
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirection=false){
+//         if(!this.map.has(vertex))
+//         this.addvertex(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertex(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirection){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+    
+    // display(){
+    //     for(let vertex of this.map.keys()){
+    //         let temp=this.map.get(vertex)
+    //         console.log(vertex,temp);
+    //     }
+    // }
+    // display(){
+    //     for(let vertex of this.map.keys()){
+    //         let temp=this.map.get(vertex)
+    //         console.log(vertex,temp);
+    //     }
+    // }
+//     display(){
+//         for(let ver of this.map.keys()){
+// let temp=this.map.get(ver)
+// console.log(ver,temp);
+//         }
+//     }
+// }
+
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirection=false){
+//         if(!this.map.has(vertex))
+//         this.addvertex(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertex(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirection){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+//     display(){
+//         for(let ver of this.map.keys()){
+//             let temp=this.map.get(ver)
+//             console.log(ver,temp);
+//         }
+//     }
+// }
+
+// let obj = new graph();
+// obj.insert("A", 1);
+// obj.insert("B", 2);
+// obj.insert(2, 2);
+// obj.insert("C", 1,true);
+// obj.insert("D", 'A',true);
+
+
+// obj.display();
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirection=false){
+//         if(!this.map.has(vertex))
+//         this.addvertex(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertex(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirection){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+//     display(){
+//         for(let vertex of this.map.keys()){
+//             let temp=this.map.get(vertex)
+//             console.log(vertex,temp);
+//         }
+//     }
+// }
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirectional=false){
+//         if(!this.map.has(vertex)){
+
+//             this.addvertex(vertex)
+//         }
+//         if(!this.map.has(edge)){
+
+//             this.addvertex(edge)
+//         }
+//         this.map.get(vertex).push(edge)
+//         if(isbidirectional){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+//     display(){
+//         for(let vertex of this.map.keys()){
+//             let temp=this.map.get(vertex)
+//             console.log(vertex,temp);
+//         }
+//     }
+// }
+
+
+
+// let obj = new graph();
+// obj.insert("A", 1);
+// obj.insert("B", 2);
+// obj.insert(2, 2);
+// obj.insert("C", 1,true);
+// obj.insert("D", 'A',true);
+
+
+// obj.display();
+
+// class trienode{
+//     constructor(){
+//         this.children=new Map()
+//     }
+// }
+// class trie{
+//     constructor(str){
+//         this.root=new trienode()
+//         this.endSymbol='*'
+//         this.populateSuffixtrie(str)
+//     }
+//     populateSuffixtrie(str){
+//         for(let i=0;i<str.length;i++){
+//             this.insertsubstring(i,str)
+//         }
+//     }
+//     insertsubstring(index,str){
+//         let node=this.root
+//         for(let i=index;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter))
+//             {
+//                 node.children.set(letter,new trienode())
+//             }node=node.children.get(letter)
+//         }node.children.set(this.endSymbol,null)
+//     }
+//     contain(str){
+//         let node=this.root
+//         for(let i=0;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 return false
+//             }node=node.children.get(letter)
+//         }return node.children.has(this.endSymbol)
+//     }
+// }
+
+// class trienode{
+//     constructor(){
+//         this.children=new Map()
+//     }
+// }
+// class trie{
+//     constructor(str){
+//         this.root=new trienode()
+//         this.endSymbol='*'
+//         this.populatesuffixtrie(str)
+//     }
+//     populatesuffixtrie(str){
+//         for(let i=0;i<str.length;i++){
+//            this.insertSubstring(i,str)
+//         }
+//     }
+//     insertSubstring(index,str){
+//         let node=this.root
+//         for(let i=index;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 node.children.set(letter,new trienode())
+//             }node=node.children.get(letter)
+//         }node.children.set(this.endSymbol,null)
+//     }
+//     contain(str){
+//         let node=this.root
+//         for(let i=0;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 return false
+//             }node=node.children.get(letter)
+//         }return node.children.has(this.endSymbol)
+//     }
+// }
+// let tr=new trie('tree')
+// console.log(tr.contain('e'));
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertex(veertex){
+//         this.map.set(veertex,[])
+//     }
+//     insert(vertex,edge,isbidirectional=false){
+//         if(!this.map.has(vertex))
+//         this.addvertex(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertex(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirectional){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+//     display(){
+//         for(let vertex of this.map.keys()){
+//             let temp=this.map.get(vertex)
+//             console.log(vertex,temp);
+//         }
+//     }
+// }
+// let rr=new graph()
+// rr.insert('a',1)
+// rr.insert('b',2)
+// rr.insert('c',3,true)
+// rr.display()
+
+
+// class minHeap{
+//     constructor(){
+// this.heap=[]
+//     }
+//     buildHeap(array){
+//         this.heap=[...array]
+//         for(let i=this.parent(this.heap.length-1);i>=0;i--){
+//             this.shiftadown(i)
+//         }
+//     }
+//         shiftadown(currentindex){
+//             let endIdx=this.heap.length-1
+//             let leftIDx=this.leftChild(currentindex)
+//             while(leftIDx<=endIdx){
+//                 let rightIdx=this.rightChild(currentindex)
+//                 let swapiDx
+//                 if(rightIdx<=endIdx  && this.heap[rightIdx]<this.heap[leftIDx]){
+//                     swapiDx=rightIdx
+//                 }else{
+//                     swapiDx=leftIDx
+//                 }if(this.heap[currentindex]>this.heap[swapiDx]){
+//                     this.swap(currentindex,swapiDx)
+//                     currentindex=swapiDx
+//                     leftIDx=this.leftChild(currentindex)
+//                 }else{
+//                     return
+//                 }
+//             }
+//         }
+// shiftUp(currentIndex){
+//     let parentIdx=this.parent(currentIndex)
+//     while(currentIndex>0 && this.heap[currentIndex]<this.heap[parentIdx]){
+//         this.swap(currentIndex,parentIdx)
+//         currentIndex=parentIdx
+//         parentIdx=this.parent(currentIndex)
+//     }
+// }
+// insert(data){
+//     this.heap.push(data)
+//     this.shiftUp(this.heap.length-1)
+// }
+// remove(){
+//     this.swap(0,this.heap.length-1)
+//     this.heap.pop()
+//     this.shiftadown(0)
+// }
+    
+//     display(){
+//         for(let i=0;i<this.heap.length;i++){
+//             console.log(this.heap[i]);
+//         }
+//     }
+//     parent(i){
+//         return Math.floor((i-1)/2)
+//     }
+//     leftChild(i){
+//         return i*2+1
+//     }
+//     rightChild(i){
+//         return i*2+2
+//     }
+//     swap(i,j){
+//         [this.heap[i],this.heap[j]]=[this.heap[j],this.heap[i]]
+//     }
+// }
+// let he=new minHeap()
+// let array=[12,4,9,1,7,3]
+// he.buildHeap(array)
+// he.display()
+// console.log('....');
+
+// he.remove()
+// he.display()
+// console.log('....');
+// he.insert(1)
+// he.display()
+
+
+// class node{
+//     constructor(data){
+//         this.data=data
+//         this.left=null
+//         this.right=null
+//     }
+// }
+
+// class binarySearchTree{
+//     constructor(){
+//         this.root=null
+//     }
+//     insert(data){
+//         let curentdata=this.root
+//         if(curentdata==null){
+//             this.root=new node(data)
+//             return this.root.data+'...root'
+//         }else{
+//             while(true){
+//             if(data<curentdata.data){
+
+//                 if(curentdata.left==null){
+//                     curentdata.left=new node(data)
+//                     return curentdata.left.data+'...left'
+//                 }else{
+//                     curentdata=curentdata.left
+//                 }
+//             }else{
+//                 if(curentdata.right==null){
+//                     curentdata.right=new node(data)
+//                     return curentdata.right.data+'...right'
+//                 }else{
+//                     curentdata=curentdata.right
+//                 }
+//             }
+//             }
+//         }
+//     }
+//     inorder(){
+//         this.inorderHelper(this.root)
+//     }
+//     inorderHelper(curentdata){
+//         if(curentdata!=null){
+//             this.inorderHelper(curentdata.left)
+//             console.log(curentdata.data);
+//             this.inorderHelper(curentdata.right)
+//         }
+//     }
+
+//     isBst(){
+//        return this.isBstHelper(this.root,0,Infinity)
+//     }
+//     isBstHelper(root,min,max){
+//         if(root==null){
+//             return true
+//         }
+//         if(root.data<min || root.data>max)
+//         return false
+//         return(this.isBstHelper(root.left,min,root.data-1)&& this.isBstHelper(root.right,root.data+1,max))
+//     }
+
+//     contain(data){
+//         let curentdata=this.root
+//         while(curentdata!=null){
+//             if(data<curentdata.data)
+//             curentdata=curentdata.left
+//             else if(data>curentdata.data)
+//             curentdata=curentdata.right
+//             else
+//             return true
+//         }
+//         return false
+//     }
+// }
+// let b=new binarySearchTree()
+// console.log(b.insert(40));
+// console.log(b.insert(30));
+// console.log(b.insert(50));
+// b.inorder()
+// console.log(b.isBst());
+// console.log(b.contain(0));
+
+
+// class minHeap{
+//     constructor(){
+//         this.heap=[]
+      
+//     }
+//     shiftDown(currentIdx){
+//         let endIdx=this.heap.length-1
+//         let leftIDx=this.leftChild(currentIdx)
+//         while(leftIDx<=endIdx){
+//             let rightIdx=this.rightChild(currentIdx)
+//             let swapidx
+//             if(rightIdx<=endIdx && this.heap[rightIdx]<this.heap[leftIDx])
+//             swapidx=rightIdx
+//             else
+//             swapidx=leftIDx
+//             if(this.heap[currentIdx]>this.heap[swapidx]){
+//                 this.swap(currentIdx,swapidx)
+//                 currentIdx=swapidx
+//                 leftIDx=this.leftChild(currentIdx)
+//             }else{
+//                 return
+//             }
+//         }
+//     }
+//     shiftUP(currentIdx){
+//         let parentIDx=this.parent(currentIdx)
+//         while(currentIdx>0 && this.heap[parentIDx]>this.heap[currentIdx]){
+//             this.swap(currentIdx,parentIDx)
+//             currentIdx=parentIDx
+//             parentIDx=this.parent(currentIdx)
+//         }
+//     }
+//     insert(data){
+//         this.heap.push(data)
+//         this.shiftUP(this.heap.length-1)
+//     }
+//     remove(){
+//         this.swap(0,this.heap.length-1)
+//         this.heap.pop()
+//         this.shiftDown(0)
+//     }
+//     buildHeap(array){
+//         this.heap=[...array]
+//         for(let i=this.parent(this.heap.length-1);i>=0;i--)
+//         this.shiftDown(i)
+//     }
+//     print(){
+//         for(let i=0;i<this.heap.length;i++)
+//         console.log(this.heap[i]);
+//     }
+//     parent(i){
+//         return Math.floor((i-1)/2)
+//     }
+//     leftChild(i){
+//         return i*2+1
+//     }
+//     rightChild(i){
+//         return i*2+2
+//     }
+//     swap(i,j){
+//         [this.heap[i],this.heap[j]]=[this.heap[j],this.heap[i]]
+//     }
+
+// }
+// let array=[12,3,9,0,5]
+// let he=new minHeap()
+// he.buildHeap(array)
+// he.print()
+// console.log('.............');
+// he.remove()
+// he.print()
+// console.log('.............');
+// he.insert(10)
+// he.print()
+// console.log('.............');
+
+// class trienode{
+// constructor(){
+//     this.children=new Map()
+// }
+// }
+// class trie{
+//     constructor(str){
+//         this.root=new trienode()
+//         this.endSymbol='*'
+//         this.populateSuffixtrie(str)
+
+//     }
+//     populateSuffixtrie(str){
+//         for(let i=0;i<str.length;i++)
+//         this.insertSubstring(i,str)
+//     }
+//     insertSubstring(index,str){
+//         let node=this.root
+//         for(let i=index;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter))
+//             node.children.set(letter,new trienode())
+//             node=node.children.get(letter)
+//         }node.children.set(this.endSymbol,null)
+//     }
+//     contain(str){
+//         let node=this.root
+//         for(let i=0;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 return false
+//             }node=node.children.get(letter)
+//         }return node.children.has(this.endSymbol)
+//     }
+// }
+
+
+// class TrieNode {
+//     constructor() {
+//       this.children = new Map();
+//     }
+//   }
+  
+//   class Trie {
+//     constructor(str) {
+//       this.root = new TrieNode();
+//       this.endSymbol = '*';
+//       this.populatePrefixTrie(str);
+//     }
+  
+//     populatePrefixTrie(str) {
+//       for (let i = 0; i < str.length; i++) {
+//         this.insertSubstring(i, str);
+//       }
+//     }
+  
+//     insertSubstring(index, str) {
+//       let node = this.root;
+//       for (let i = 0; i <= index; i++) {
+//         let letter = str.charAt(i);
+//         if (!node.children.has(letter)) {
+//           node.children.set(letter, new TrieNode());
+//         }
+//         node = node.children.get(letter);
+//       }
+     
+//       node.children.set(this.endSymbol, null);
+//     }
+  
+//     contains(str) {
+//       let node = this.root;
+//       for (let i = 0; i < str.length; i++) {
+//         let letter = str.charAt(i);
+//         if (!node.children.has(letter)) {
+//           return false;
+//         }
+//         node = node.children.get(letter);
+//       }
+   
+//       return node.children.has(this.endSymbol);
+//     }
+//   }
+
+
+// class TrieNode {
+//     constructor() {
+//       this.children = new Map();
+//     }
+//   }
+  
+//   class Trie {
+//     constructor(str) {
+//       this.root = new TrieNode();
+//       this.endSymbol = '*';
+//       this.populatePrefixTrie(str);
+//     }
+  
+//     populatePrefixTrie(str) {
+//       for (let i = 0; i < str.length; i++) {
+//         this.insertSubstring(i, str);
+//       }
+//     }
+  
+//     insertSubstring(index, str) {
+//       let node = this.root;
+//       for (let i = 0; i <= index; i++) {
+//         let letter = str.charAt(i);
+//         if (!node.children.has(letter)) {
+//           node.children.set(letter, new TrieNode());
+//         }
+//         node = node.children.get(letter);
+//       }
+//       node.children.set(this.endSymbol, null);
+//     }
+  
+//     contains(str) {
+//       let node = this.root;
+//       for (let i = 0; i < str.length; i++) {
+//         let letter = str.charAt(i);
+//         if (!node.children.has(letter)) {
+//           return false;
+//         }
+//         node = node.children.get(letter);
+//       }
+//       return node.children.has(this.endSymbol);
+//     }
+//   }
+  
+  
+// let tr=new Trie('tree')
+
+// console.log(tr.contains('tr'));
+
+
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertx(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirectional=false){
+//         if(!this.map.has(vertex))
+//         this.addvertx(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertx(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirectional){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+
+//     display(){
+//         for(let vertex of this.map.keys()){
+//             let temp=this.map.get(vertex)
+//             console.log(vertex,temp);
+//         }
+//     }
+// }
+
+// let tr=new graph()
+// tr.insert('a',1)
+// tr.insert(1,'c')
+// tr.insert('b',2)
+// tr.insert('c','a')
+// tr.display()
+
+
+// class MaxHeap {
+//     constructor() {
+//       this.heap = [];
+//     }
+    
+//     buildHeap(array) {
+//       this.heap = [...array];
+//       for (let i = this.parent(this.heap.length - 1); i >= 0; i--) {
+//         this.shiftDown(i);
+//       }
+//     }
+  
+//     shiftDown(currentIndex) {
+//       let endIdx = this.heap.length - 1;
+//       let leftIdx = this.leftChild(currentIndex);
+//       while (leftIdx <= endIdx) {
+//         let rightIdx = this.rightChild(currentIndex);
+//         let idxToShift;
+//         if (rightIdx <= endIdx && this.heap[rightIdx] > this.heap[leftIdx]) {
+//           idxToShift = rightIdx;
+//         } else {
+//           idxToShift = leftIdx;
+//         }
+//         if (this.heap[currentIndex] < this.heap[idxToShift]) {
+//           this.swap(currentIndex, idxToShift);
+//           currentIndex = idxToShift;
+//           leftIdx = this.leftChild(currentIndex);
+//         } else {
+//           return;
+//         }
+//       }
+//     }
+  
+//     shiftUp(currentIndex) {
+//       let parentIndex = this.parent(currentIndex);
+//       while (currentIndex > 0 && this.heap[parentIndex] < this.heap[currentIndex]) {
+//         this.swap(currentIndex, parentIndex);
+//         currentIndex = parentIndex;
+//         parentIndex = this.parent(currentIndex);
+//       }
+//     }
+  
+//     remove() {
+//       this.swap(0, this.heap.length - 1);
+//       this.heap.pop();
+//       this.shiftDown(0);
+//     }
+  
+//     insert(value) {
+//       this.heap.push(value);
+//       this.shiftUp(this.heap.length - 1);
+//     }
+  
+//     parent(i) {
+//       return Math.floor((i - 1) / 2);
+//     }
+  
+//     leftChild(i) {
+//       return i * 2 + 1;
+//     }
+  
+//     rightChild(i) {
+//       return i * 2 + 2;
+//     }
+  
+//     display() {
+//       for (let i = 0; i < this.heap.length; i++) {
+//         console.log(this.heap[i]);
+//       }
+//     }
+  
+//     swap(i, j) {
+//       [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
+//     }
+//   }
+//   let array = [40,6, 2, 8];
+//   let heap = new MaxHeap();
+//   heap.buildHeap(array);
+//   heap.display();
+//   console.log('.....');
+//   heap.insert(1);
+//   heap.insert(5);
+//   heap.insert(15);
+//   heap.insert(3);
+//   heap.display();
+// //   console.log('');
+// //   heap.remove();
+// //   heap.display();
+  
+
+// class   MaxHeap{
+// constructor(){
+//     this.heap=[]
+// }
+// buildHeap(array){
+//     this.heap=[...array]
+//     for(let i=this.parent(this.heap.length-1);i>=0;i--)
+//     this.shiftDown(i)
+// }
+// shiftDown(currentIdx){
+//     let endIdx=this.heap.length-1
+//     let leftidx=this.leftchild(currentIdx)
+//     while(leftidx<=endIdx){
+//         let rightIDx=this.rightChild(currentIdx)
+//         let swapidx
+//         if(rightIDx<=endIdx && this.heap[rightIDx]> this.heap[leftidx])
+//         swapidx=rightIDx
+//         else
+//         swapidx=leftidx
+//         if(this.heap[currentIdx]<this.heap[swapidx]){
+//             this.swap(currentIdx,swapidx)
+//             currentIdx=swapidx
+//             leftidx=this.leftchild(currentIdx)
+//         }else
+//         return
+//     }
+// }
+// display(){
+//     for(let i=0;i<this.heap.length;i++)
+//     console.log(this.heap[i]);
+// }
+// parent(i){
+//     return Math.floor((i-1)/2)
+// }
+// leftchild(i){
+//     return i*2+1
+// }
+// rightChild(i){
+//     return i*2+2
+// }
+// swap(i,j){
+//     [this.heap[i],this.heap[j]]=[this.heap[j],this.heap[i]]
+// }
+// }
+// let array=[1,90,2,38,9,5]
+// let m=new MaxHeap()
+// m.buildHeap(array)
+// m.display()
+
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertex(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirectional=false){
+//         if(!this.map.has(vertex))
+//         this.addvertex(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertex(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirectional){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+//     display(){
+//         for(let vertex of this.map.keys()){
+
+//             let temp=this.map.get(vertex)
+//             console.log(vertex,temp);
+//         } }
+
+//         delete(vertex){
+//             if(this.map.has(vertex)){
+//                 let edges=this.map.get(vertex)
+//                 for(let edge of edges){
+//                     let edgeArray=this.map.get(edge)
+//                     let index=edgeArray.indexOf(vertex)
+//                     if(index>=0){
+//                         edgeArray.splice(index,1)                    }
+//                 }
+//             }
+//             this.map.delete(vertex)
+//         }
+// }
+// let gr=new graph()
+// gr.insert('a',1)
+// gr.insert(1,'f')
+// gr.insert(2,['a','f'])
+// gr.insert('b',2)
+// gr.insert('c',3)
+// gr.display()
+
+
+// class node{
+//     constructor(data){
+//         this.data=data
+//         this.left=null
+//         this.right=null
+//     }
+// }
+// class binarySearchTree{
+//     constructor(){
+//         this.root=null
+//     }
+//     insert(data){
+//         let curentdata=this.root
+//         if(curentdata==null){
+//             this.root=new node(data)
+//             return this.root.data+'...root'
+//         }else{
+//             while(true){
+//                 if(data<curentdata.data)
+//                 {
+//                     if(curentdata.left==null){
+//                         curentdata.left=new node(data)
+//                         return curentdata.left.data+'....left'
+//                     }else{
+//                         curentdata=curentdata.left
+//                     }
+//                 }else{
+//                     if(curentdata.right==null){
+//                         curentdata.right=new node(data)
+//                         return curentdata.right.data+'...right'
+//                     }else{
+//                         curentdata=curentdata.right
+//                     }
+//                 }
+//             }
+//         }
+
+//     }
+//     inorder(){
+//         this.inorderHelper(this.root)
+//     }
+//     inorderHelper(curentdata){
+//         if(curentdata!=null){
+//             this.inorderHelper(curentdata.left)
+//             console.log(curentdata.data);
+//             this.inorderHelper(curentdata.right)
+//         }
+//     }
+//     isbst(){
+//        return this.isbstHelper(this.root,0,Infinity)
+//     }
+//     isbstHelper(root,min,max){
+//         if(root==null)
+//         return true
+//         if(root.data<min || root.data>max)
+//         return false
+//         return(this.isbstHelper(root.left,min,root.data-1)&& this.isbstHelper(root.right,root.data+1,max))
+//     }
+// }
+// let n=new binarySearchTree()
+// console.log(n.insert(-40));
+// console.log(n.insert(30));
+// console.log(n.insert(32));
+// console.log(n.insert(28));
+// console.log(n.insert(50));
+// console.log(n.insert(48));
+// console.log(n.insert(52));
+// n.inorder()
+// console.log(n.isbst());
+
+
+// class trieNode{
+//     constructor(){
+//         this.children=new Map()
+
+//     }
+// }
+
+// class trie{
+//     constructor(str){
+//         this.root=new trieNode()
+//         this.endSymbol='*'
+//         this.populatesuffixtrie(str)
+//     }
+//     populatesuffixtrie(str){
+//         for(let i=0;i<str.length;i++)
+//         this.insertsubstring(i,str)
+//     }
+//     insertsubstring(index,str){
+//         let node=this.root
+//         for(let i=index;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 node.children.set(letter,new trieNode())
+//             }node=node.children.get(letter)
+
+//         }
+//         node.children.set(this.endSymbol,null)
+//     }
+
+
+//     contain(str){
+//         let node=this.root
+//         for(let i=0;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 return false
+//             }node=node.children.get(letter)
+//         }return node.children.has(this.endSymbol)
+//     }
+// }
+// let n=new trie('tree')
+// console.log(n.contain('e'));
+
+
+// class minHEap{
+//     constructor(){
+//         this.heap=[]
+//     }
+// buildHeap(array){
+//     this.heap=[...array]
+//     for(let i=this.parent(this.heap.length-1);i>=0;i--)
+//     this.shiftDown(i)
+// }
+// shiftDown(currentiDx){
+//     let endIdx=this.heap.length-1
+//     let lftIdx=this.leftChild(currentiDx)
+//     while(lftIdx<=endIdx){
+//         let rightIdx=this.rightChild(currentiDx)
+//         let swapiDx
+//         if(rightIdx<=endIdx && this.heap[rightIdx]<this.heap[lftIdx]){
+//             swapiDx=rightIdx
+//         }else{
+//             swapiDx=lftIdx
+//         }if(this.heap[currentiDx]>this.heap[swapiDx]){
+//             this.swap(currentiDx,swapiDx)
+//             currentiDx=swapiDx
+//             lftIdx=this.leftChild(currentiDx)
+//         }else{
+//             return
+//         }
+//     }
+
+// }
+// shiftUp(currentIdx){
+//     let parntIdx=this.parent(currentIdx)
+//     while(currentIdx>0 && this.heap[parntIdx]>this.heap[currentIdx]){
+//         this.swap(currentIdx,parntIdx)
+//         currentIdx=parntIdx
+//         parntIdx=this.parent(currentIdx)
+//     }
+// }
+
+// remove(){
+//     this.swap(0,this.heap.length-1)
+//     this.heap.pop()
+//     this.shiftDown(0)
+// }
+// display()
+// {
+//     for(let i=0;i<this.heap.length;i++)
+//     console.log(this.heap[i]);
+// }
+// insert(data){
+//     this.heap.push(data)
+//     this.shiftUp(this.heap.length-1)
+// }
+// parent(i){
+//     return Math.floor((i-1)/2)
+// }
+// leftChild(i){
+//     return i*2+1
+// }
+// rightChild(i){
+//     return i*2+2
+// }
+// swap(i,j){
+//     [this.heap[i],this.heap[j]]=[this.heap[j],this.heap[i]]
+// }
+// }
+// let array=[12,34,56,9,1,7]
+// let n=new minHEap()
+// n.buildHeap(array)
+// n.insert(5)
+// n.remove()
+// n.display()
+
+// class graph{
+//     constructor(){
+//         this.map=new Map()
+//     }
+//     addvertx(vertex){
+//         this.map.set(vertex,[])
+//     }
+//     insert(vertex,edge,isbidirectional=false){
+//         if(!this.map.has(vertex))
+//         this.addvertx(vertex)
+//         if(!this.map.has(edge))
+//         this.addvertx(edge)
+//         this.map.get(vertex).push(edge)
+//         if(isbidirectional){
+//             this.map.get(edge).push(vertex)
+//         }
+//     }
+//     display(){
+//         for(let vertex of this.map.keys()){
+//             let temp=this.map.get(vertex)
+//             console.log(vertex,temp);
+//         }
+//     }
+// }
+
+// let n=new graph()
+// n.insert('a',1)
+// n.insert(1,'c',true)
+// n.insert('k',9,true)
+// n.display()
+
+// class node{
+//     constructor(data){
+//         this.data=data
+//         this.left=null
+//         this.right=null
+//     }
+// }
+// class binarysearchTree{
+//     constructor(){
+//         this.root=null
+// }
+// insert(data){
+//     let curentdata=this.root
+//     if(curentdata==null){
+//         this.root=new node(data)
+//         return this.root.data+'....root'
+//     }else{
+//         while(true){
+//             if(data<curentdata.data){
+//                 if(curentdata.left==null){
+//                     curentdata.left=new node(data)
+//                     return curentdata.left.data+'....left'
+//                 }else{
+//                     curentdata=curentdata.left
+//                 }
+//             }else{
+//                 if(curentdata.right==null){
+//                     curentdata.right=new node(data)
+//                     return curentdata.right.data+'....right'
+//                 }else{
+//                     curentdata=curentdata.right
+//                 }
+//             }
+//         }
+//     }
+// }
+// inorder(){
+//     this.inorderHelper(this.root)
+// }
+// inorderHelper(curentdata){
+//     if(curentdata!=null){
+//         this.inorderHelper(curentdata.left)
+//         console.log(curentdata.data);
+//         this.inorderHelper(curentdata.right)
+//     }
+// }
+// isBst(){
+//     return this.isBstHelper(this.root,0,Infinity)
+// }
+// isBstHelper(root,min,max){
+//     if(root==null)
+//     return true
+//     if(root.data<min || root.data>max)
+//     return false
+//     return(this.isBstHelper(root.left,min,root.data-1)&& this.isBstHelper(root.right,root.data+1,max))
+// }
+// }
+// let tree=new binarysearchTree()
+// console.log(tree.insert(40));
+// console.log(tree.insert(30));
+// console.log(tree.insert(32));
+// console.log(tree.insert(28));
+// console.log(tree.insert(52));
+// console.log(tree.insert(50));
+// console.log(tree.insert(48));
+// tree.inorder()
+// console.log(tree.isBst());
+
+
+// class minHeap{
+// constructor(){
+//     this.heap=[]
+// }
+// buildHeap(array){
+//     this.heap=[...array]
+//     for(let i=this.parent(this.heap.length-1);i>=0;i--){
+//         this.shiftadown(i)
+//     }
+// }
+// insert(data){
+//     this.heap.push(data)
+//     this.shiftUp(this.heap.length-1)
+// }
+// remove(){
+//     this.swap(0,this.heap.length-1)
+//     this.heap.pop()
+//     this.shiftadown(0)
+// }
+// display(){
+//     for(let i=0;i<this.heap.length;i++){
+//         console.log(this.heap[i]);
+//     }
+// }
+// shiftadown(currentIdx){
+//     let endIdx=this.heap.length-1
+//     let leftIdx=this.leftChild(currentIdx)
+//     while(leftIdx<=endIdx){
+//         let rightIDx=this.rightChild(currentIdx)
+//         let swapiDx
+//         if(rightIDx<=endIdx && this.heap[rightIDx]<this.heap[leftIdx]){
+//             swapiDx=rightIDx
+//         }else{
+//             swapiDx=leftIdx
+//         }
+//         if(this.heap[currentIdx]>this.heap[swapiDx]){
+//             this.swap(currentIdx,swapiDx)
+//             currentIdx=swapiDx
+//             leftIdx=this.leftChild(currentIdx)
+//         }else{
+//             return
+//         }
+//     }
+// }
+// shiftUp(currentIdx){
+//     let parentIdx=this.parent(currentIdx)
+//     while(currentIdx>0 && this.heap[parentIdx]>this.heap[currentIdx]){
+//         this.swap(currentIdx,parentIdx)
+//         currentIdx=parentIdx
+//         parentIdx=this.parent(currentIdx)
+//     }
+// }
+// parent(i){
+//     return Math.floor((i-1)/2)
+// }
+// leftChild(i){
+//     return i*2+1
+// }
+// rightChild(i){
+//     return i*2+2
+// }
+// swap(i,j){
+//     [this.heap[i],this.heap[j]]=[this.heap[j],this.heap[i]]
+// }
+// }
+// let array=[13,3,9,5,8,1]
+// let he=new minHeap()
+// he.buildHeap(array)
+// he.display()
+// console.log('.......');
+// he.insert(3)
+// he.display()
+// console.log('.......');
+// he.remove()
+// he.display()
+
+
+// class trienode{
+//     constructor(){
+//         this.children=new Map()
+//     }
+// }
+// class trie{
+//     constructor(str){
+//         this.root=new trienode()
+//         this.endSymbol='*'
+//         this.populateSuffixtrie(str)
+//     }
+//     populateSuffixtrie(str){
+//         for(let i=0;i<str.length;i++)
+//        this.insertSubstring(i,str)
+//     }
+//     insertSubstring(index,str){
+//         let node=this.root
+//         for(let i=index;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 node.children.set(letter,new trienode())
+//             }node=node.children.get(letter)
+//         }node.children.set(this.endSymbol,null)
+//     }
+//     contain(str){
+//         let node =this.root
+//         for(let i=0;i<str.length;i++){
+//             let letter=str.charAt(i)
+//             if(!node.children.has(letter)){
+//                 return false
+//             }node=node.children.get(letter)
+//         }return node.children.has(this.endSymbol)
+//     }
+// }
+
+// let tr=new trie('tree')
+// console.log(tr.contain('t'));
+
+
+class graph{
     constructor(){
-        this.root=null
+        this.map=new Map()
     }
-    insert(data){
-        let currentdata=this.root
+    addvertex(vertex){
+        this.map.set(vertex,[])
+    }
+    insert(vertex,edge,isbidirectional=false){
+        if(!this.map.has(vertex))
+        this.addvertex(vertex)
+        if(!this.map.has(edge))
+        this.addvertex(edge)
+        this.map.get(vertex).push(edge)
+        if(isbidirectional){
+            this.map.get(edge).push(vertex)
 
-        if(currentdata==null){
-            this.root=new node(data)
-            return this.root.data+'...root'
-        }else{
-            while(true){
-                if(data<currentdata.data){
-                    if(currentdata.left==null){
-                        currentdata.left=new node(data)
-                        return currentdata.left.data+'...left'
-                    }else{
-                        currentdata=currentdata.left
-                    }
-                }else{
-                    if(currentdata.right==null){
-                        currentdata.right=new node(data)
-                        return currentdata.right.data+'...right'
-                    }else{
-                        currentdata=currentdata.right
-                    }
+        }
+    }
+    display(){
+        for(let vertex of this.map.keys()){
+            let temp=this.map.get(vertex)
+            console.log(vertex,temp);
+        }
+    }
+
+    dfs(startingVertex) {
+        const visited = new Set();
+    
+        this._dfsHelper(startingVertex, visited);
+      }
+    
+      _dfsHelper(vertex, visited) {
+        visited.add(vertex);
+         console.log(vertex);
+    
+        const neighbors = this.map.get(vertex);
+        for (const neighbor of neighbors) {
+          if (!visited.has(neighbor)) {
+            this._dfsHelper(neighbor, visited);
+          }
+        }
+      }
+
+
+      delete(vertex) {
+        if (this.map.has(vertex)) {
+           
+            for (let [key ,value] of this.map) {
+               
+                const index = value.indexOf(vertex);
+                if (index >= 0) {
+                    value.splice(index, 1);
                 }
             }
+            this.map.delete(vertex);
         }
-    }
-
-    contain(data){
-        let curentdata=this.root
-        while(curentdata!=null){
-            if(data<curentdata.data){
-                curentdata=curentdata.left
-            }
-            else if(data<curentdata.data){
-                curentdata=curentdata.left
-            }else{
-                return true
-            }
-        }
-        return false
-}
-
-inorder(){
-    this.inorderHelper(this.root)
-}
-inorderHelper(curentdata){
-    if(curentdata!=null){
-        this.inorderHelper(curentdata.left)
-        console.log(curentdata.data);
-        this.inorderHelper(curentdata.right)
-    }
-}
-
-isBst(){
-    return this.isBstHelper(this.root,0,Infinity)
-}
-isBstHelper(root,min,max){
-    if(root==null)
-    return true
-    if(root.data<min || root.data>max)
-    return false
-    return(this.isBstHelper(root.left,min,root.data-1)&& this.isBstHelper(root.right,root.data+1,max))
 }
 }
-
-let tr=new binarySearchtree()
-console.log(tr.insert(40));
-console.log(tr.insert(30));
-console.log(tr.insert(32));
-console.log(tr.insert(28));
-console.log(tr.insert(58));
-console.log(tr.insert(50));
-console.log(tr.insert(42));
-tr.inorder()
-console.log(tr.contain(50));
-console.log(tr.isBst());
+let g=new graph()
+g.insert('a',1)
+g.insert(1,'c')
+g.insert('a',5)
+g.insert('b','a',true)
+g.insert(5,'c')
+g.display()
+console.log('...........');
+g.dfs('a');
+console.log('...........');
+g.delete('a')
+g.display()

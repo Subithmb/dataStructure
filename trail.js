@@ -352,12 +352,16 @@ class Graph {
           this.map.get(edge).push(vertex);
       }
   }
-  delete(vertex){
-      if (this.map.has(vertex)){
+  delete(vertex) {
+      if (this.map.has(vertex)) {
           let edges = this.map.get(vertex);
-          console.log(edges);
-          for ( let edge of edges){
-              this.map.get(edge).splice(this.map.get(edge).indexOf(vertex), 1);
+          // console.log(edges);
+          for (let edge of edges) {
+              const edgeArray = this.map.get(edge);
+              const index = edgeArray.indexOf(vertex);
+              if (index >= 0) {
+                  edgeArray.splice(index, 1);
+              }
           }
           this.map.delete(vertex);
       }
@@ -375,5 +379,89 @@ obj.insert("A", 1);
 obj.insert("B", 2);
 obj.insert("C", 1,true);
 obj.insert("D", 'A',true);
-// obj.delete("A");
+obj.delete("A");
 obj.display();
+
+
+delete(vertex) {
+  if (this.map.has(vertex)) {
+     
+      for (let [key ,value] of this.map) {
+         
+          const index = value.indexOf(vertex);
+          if (index >= 0) {
+              value.splice(index, 1);
+          }
+      }
+      this.map.delete(vertex);
+  }
+
+}
+
+
+// .......................graph ..........................
+
+class graph{
+  constructor(){
+      this.map=new Map()
+  }
+  addvertex(vertex){
+      this.map.set(vertex,[])
+  }
+  insert(vertex,edge,isbidirectional=false){
+      if(!this.map.has(vertex))
+      this.addvertex(vertex)
+      if(!this.map.has(edge))
+      this.addvertex(edge)
+      this.map.get(vertex).push(edge)
+      if(isbidirectional){
+          this.map.get(edge).push(vertex)
+
+      }
+  }
+  display(){
+      for(let vertex of this.map.keys()){
+          let temp=this.map.get(vertex)
+          console.log(vertex,temp);
+      }
+  }
+
+  dfs(startingVertex) {
+    const visited = new Set();
+
+    this._dfsHelper(startingVertex, visited);
+  }
+
+  _dfsHelper(vertex, visited) {
+    visited.add(vertex);
+     console.log(vertex);
+
+    const neighbors = this.map.get(vertex);
+    for (const neighbor of neighbors) {
+      if (!visited.has(neighbor)) {
+        this._dfsHelper(neighbor, visited);
+      }
+    }
+  }
+
+
+  delete(vertex) {
+    if (this.map.has(vertex)) {
+        for (let [key ,value] of this.map) { 
+            const index = value.indexOf(vertex);
+            if (index >= 0) {
+                value.splice(index, 1);
+            }
+        }
+        this.map.delete(vertex);
+    }
+}
+
+}
+let g=new graph()
+g.insert('a',1)
+g.insert('b',5)
+g.insert(5,'c',true)
+g.display()
+console.log('...........');
+g.dfs('a')
